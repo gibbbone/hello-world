@@ -85,9 +85,10 @@ Ok,after having broken enough stuff better finish our trip:
 
 * I added the last 35 typed commands with the  `>>` pipe. 
 * [By filtering out the line numbering](https://stackoverflow.com/questions/7110119/bash-history-without-line-numbers) 
-* Then I commited and pushed upstream
+* Then I commited and pushed upstream.
 
-  
+<br> </br>
+
     $ history 35 | cut -c 8- >> file1.md
     $ git add file1.md
     $ git commit -m "adding content to file with new adventures in gitland"

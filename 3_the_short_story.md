@@ -15,14 +15,14 @@ $ git checkout hello3
 # make a change
 $ cp file1.md file2.md
 
-# do some stuff
-$ gedit file2.md
+# add some random stuff
+$ echo "Git is like an old marriage: commit early, commit often. And never forget to leave a message." >> file2.md
 
 # stage the file 
 $ git add file2.md
 
 # finally commit
-$ git commit -m "Added new file with full procedure without errors"
+$ git commit -m "Added new test file."
 
 # switch to master
 $ git checkout master
@@ -30,7 +30,7 @@ $ git checkout master
 # merge master with new updated branch
 $ git merge hello3
 
-# push upstream the master folder
+# push upstream the master folder. Here you'll need username+password
 $ git push
 
 # delete used branch

@@ -156,11 +156,12 @@ After this both local and remote master should be on the same page:
 	Already up-to-date.
 
 ## Clean after yourself
-FInally, if the branch is no long needed, delete it both locally and remotely:
+FInally, if the branch is no longer needed delete it locally. If the branch has been pushed upstream delete it also remotely:
 
 	$ git branch -d hello3
 	Deleted branch hello3 (was 02d564e).
 	
+	# do this if the branch has pushed otherwise no branch would be found
 	$  git push origin --delete hello3
 	Username for 'https://github.com': giovannibonaccorsi
 	Password for 'https://giovannibonaccorsi@github.com':

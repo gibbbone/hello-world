@@ -1,5 +1,5 @@
 ## Intro 
-This is a test markdown file. It has been used to test the command line procedure outlined [here](https://guides.github.com/introduction/git-handbook/). It is loosely based on [the previous version](https://github.com/giovannibonaccorsi/hello-world/blob/master/file1.md).
+This is a test markdown file. It has been used to test the command line procedure outlined [here](https://guides.github.com/introduction/git-handbook/). It is loosely based on [the previous version](https://github.com/giovannibonaccorsi/hello-world/blob/master/1_first_attempt.md).
 
 This is the second version of the procedure, hopefully with less errors. It aims to document:
 

@@ -1,5 +1,5 @@
 ## Intro 
-This is a test markdown file. It has been used to test the command line procedure outlined [here](https://guides.github.com/introduction/git-handbook/). It is loosely based on the previous one here. 
+This is a test markdown file. It has been used to test the command line procedure outlined [here](https://guides.github.com/introduction/git-handbook/). It is loosely based on [the previous version](https://github.com/giovannibonaccorsi/hello-world/blob/master/file1.md).
 
 This is the second version of the procedure, hopefully with less errors. It aims to document:
 
@@ -73,7 +73,7 @@ We edit the file while git is monitoring. After finishing let's go back to comma
     
     $ remarkable file2.md
     
-Now after the first `add` new changes won't be tracked: if we check git status we see that our file has now a controlled version (the one before modiying it) and an unstaged version (the one after). To avoid this duplication, we must add again the file to obtain a unque one. After that we can commit :
+Now after the first `add` new changes won't be tracked: if we check git status we see that our file has now a controlled version (the one before modiying it) and an unstaged version (the one after). To avoid this duplication, we must add again the file to obtain a unique one. After that we can commit :
     
     # inspect
     $ git status
@@ -110,9 +110,9 @@ Now after the first `add` new changes won't be tracked: if we check git status w
 ## Pushing
 After commiting we have now a branch which is ahead of master in our local directory and a remote master where no changes have been recorded. 
 
-We have now two strategies
+We have now two strategies.
 
-### Push upstream, then pull locally
+#### Push upstream, merge remotely, then pull locally
 Push to the remote folder:
 
 	$ git push --set-upstream origin hello3
@@ -127,39 +127,47 @@ Push to the remote folder:
 	 * [new branch]      hello3 -> hello3
 	Branch hello3 set up to track remote branch hello3 from origin.
 
-then log in Github, create a pull request and after that merge if no conflicts arises.
+Then log in Github, create a pull request and after that merge if no conflicts arises. This will show in the log as a merge from an (external) pull request. 
 
-FInally if the branch is no long needed delete it both locally and remotely. 
+Now if we want our local master to be in sync with the remote one we can type:
+
+	$ git pull
+
+#### Merge locally, then push upstream 
+Merge with master locally then push everything remotely
+
+	$ git checkout master
+	Switched to branch 'master'
+	Your branch is up-to-date with 'origin/master'.
+
+	$ git merge hello3
+	Updating 02d564e..066f2db
+	Fast-forward
+	 file2.md | 75 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------
+	 1 file changed, 67 insertions(+), 8 deletions(-)
+
+	# This will require the password (skipped the output)
+	$ git push
+	....
+	
+After this both local and remote master should be on the same page:
+
+	$ git pull
+	Already up-to-date.
+
+## Clean after yourself
+FInally, if the branch is no long needed, delete it both locally and remotely:
 
 	$ git branch -d hello3
 	Deleted branch hello3 (was 02d564e).
+	
 	$  git push origin --delete hello3
 	Username for 'https://github.com': giovannibonaccorsi
 	Password for 'https://giovannibonaccorsi@github.com':
 	To https://github.com/giovannibonaccorsi/hello-world
 	 - [deleted]         hello3
 
-Now master remote is up to date while master local is not. If we want we can update it with `git pull` otherwise we can stop tracking by deleting the .git folder on our machine with ` rm -rf .git/`
-
-## Merge locally, then push upstream 
-
+If we want  we can stop tracking by deleting the .git folder on our machine with:
+ 
+	$ rm -rf .git/
      
-    # To see which branch are available on remote:
-    $ git ls-remote
-     
-    # To see all my active branches:
-    $ git branch --all
-    
-    
-   
-After this I've proceeded as before with the first commit: log onto Github, merge the pull request and delete the branch.
-
-## Clean after yourself
-Ok, now according to my online reference I was done. The problem is that my previous branch kept showing on my local machine whenever I ran `git status` or `git branch -all`. On the contrary git log showed that merging happened upstream. 
-
-Turns out, kids, that you have to delete your local branch once your finished:
-
-    $ git branch -d hello2
-
-(There's another possibility that the infamous `hello2` branch will keep haunting your dream: a remote reference to it may remain on the remote master hence showing up when you type `git ls-remote`. In this case you have to [prune it](https://stackoverflow.com/questions/5094293/git-remote-branch-deleted-but-still-appears-in-branch-a): `git remote prune origin`)
-
